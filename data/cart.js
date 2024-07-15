@@ -28,3 +28,11 @@ export function MatchingList(prodId) {
     });
   }
 }
+export function removeFromCart(productId) {
+  let newCart = [];
+  cartList.forEach((item) => {
+    if (productId != item.productId) newCart.push(item);
+  });
+  cartList = newCart;
+  console.log(cartList);
+}
