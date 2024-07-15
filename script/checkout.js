@@ -1,34 +1,36 @@
 import { cartList } from "../data/cart.js";
+import { productList } from "../data/products.js";
+let producthtml = "";
 
-let producthtml = "",
-  Checkoutlist = [
-    {
-      deliveryDate: "Delivery date: Tuesday, June 21",
-      image: "images/products/athletic-cotton-socks-6-pairs.jpg",
-      name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
-      price: 1090,
-      quantity: 2,
-    },
-  ];
-function productList() {
-  Checkoutlist.forEach((cartItem) => {
-    producthtml += `<div class="cart-item-container">
+cartList.forEach((cartItem) => {
+  const cartid = cartItem.productId;
+  let MatchingList;
+  productList.forEach((prodItem) => {
+    if (cartid === prodItem.id) {
+      MatchingList = prodItem;
+    }
+  });
+  producthtml += `<div class="cart-item-container">
             <div class="delivery-date">Delivery date: Tuesday, June 21</div>
 
             <div class="cart-item-details-grid">
               <img
                 class="product-image"
-                src="images/products/athletic-cotton-socks-6-pairs.jpg"
+                src="${MatchingList.image}"
               />
 
               <div class="cart-item-details">
                 <div class="product-name">
-                  Black and Gray Athletic Cotton Socks - 6 Pairs
+                  ${MatchingList.name}
                 </div>
-                <div class="product-price">$10.90</div>
+                <div class="product-price">$${(
+                  MatchingList.priceCents / 100
+                ).toFixed(2)}</div>
                 <div class="product-quantity">
-                  <span> Quantity: <span class="quantity-label">2</span> </span>
-                  <span class="update-quantity-link link-primary">
+                  <span> Quantity: <span class="quantity-label">${
+                    MatchingList.quantity
+                  }</span> </span>
+                  <span class="update-quantity-link link-primary js1">
                     Update
                   </span>
                   <span class="delete-quantity-link link-primary">
@@ -78,5 +80,7 @@ function productList() {
               </div>
             </div>
           </div>`;
-  });
-}
+});
+
+//console.log(producthtml);
+document.querySelector(".order-summary").innerHTML = producthtml;

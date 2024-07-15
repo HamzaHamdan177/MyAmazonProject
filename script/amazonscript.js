@@ -23,6 +23,8 @@ import { productList } from "../data/products.js";
 let cartsetter = "",
   counter = 1,
   producthtml = "";
+updateCartQuantity();
+console.log(cartList);
 productList.forEach((product) => {
   producthtml += `<div class="product-container">
           <div class="product-image-container">
@@ -81,11 +83,13 @@ document.querySelector(".js-products-grid").innerHTML = producthtml;
 document.querySelectorAll(".js-button-primary").forEach((button, index) => {
   button.addEventListener("click", () => {
     const prodId = button.dataset.productId;
-    MatchingList(prodId);
-    addedToList(index);
-    counter++;
 
+    MatchingList(prodId);
+    localStorage.setItem("cartList", JSON.stringify(cartList));
+    //localStorage.clear();
+    addedToList(index);
     updateCartQuantity();
+    counter++;
   });
 });
 
@@ -97,7 +101,6 @@ function addedToList(index) {
   }, 2000);
 }
 function updateCartQuantity() {
-  console.log(cartList);
   let cartquantity = 0;
   cartList.forEach((cartItem) => {
     cartquantity += cartItem.quantity;
