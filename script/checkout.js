@@ -1,5 +1,4 @@
 import { cartList } from "../data/cart.js";
-import { cartsetter } from "../script/amazonscript.js";
 
 let producthtml = "",
   Checkoutlist = [
