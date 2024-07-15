@@ -86,6 +86,7 @@ cartList.forEach((cartItem, index) => {
               </div>
             </div>
           </div>`;
+  localStorage.setItem("checkout", cartList);
 });
 
 //console.log(producthtml);

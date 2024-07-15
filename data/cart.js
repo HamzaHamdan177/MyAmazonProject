@@ -9,7 +9,7 @@ export let carthtml = "",
   //     quantity: 1,
   //   },
   // ];
-  cartList = JSON.parse(localStorage.getItem("cartList")) || [];
+  cartList = JSON.parse(localStorage.getItem("cartList"));
 
 export function MatchingList(prodId) {
   let Matchingnames;
@@ -34,5 +34,5 @@ export function removeFromCart(productId) {
     if (productId != item.productId) newCart.push(item);
   });
   cartList = newCart;
-  console.log(cartList);
+  localStorage.setItem("cartList", JSON.stringify(cartList));
 }
