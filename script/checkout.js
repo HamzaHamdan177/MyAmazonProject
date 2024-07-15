@@ -1,8 +1,9 @@
 import { cartList } from "../data/cart.js";
 import { productList } from "../data/products.js";
+import { moneyCurrency } from "./utils/money.js";
 let producthtml = "";
 
-cartList.forEach((cartItem) => {
+cartList.forEach((cartItem, index) => {
   const cartid = cartItem.productId;
   let MatchingList;
   productList.forEach((prodItem) => {
@@ -23,9 +24,9 @@ cartList.forEach((cartItem) => {
                 <div class="product-name">
                   ${MatchingList.name}
                 </div>
-                <div class="product-price">$${(
-                  MatchingList.priceCents / 100
-                ).toFixed(2)}</div>
+                <div class="product-price">$${moneyCurrency(
+                  MatchingList.priceCents
+                )}</div>
                 <div class="product-quantity">
                   <span> Quantity: <span class="quantity-label">${
                     MatchingList.quantity
@@ -48,7 +49,7 @@ cartList.forEach((cartItem) => {
                     type="radio"
                     checked
                     class="delivery-option-input"
-                    name="delivery-option-1"
+                    name="delivery-option-${MatchingList.id}"
                   />
                   <div>
                     <div class="delivery-option-date">Tuesday, June 21</div>
@@ -59,7 +60,7 @@ cartList.forEach((cartItem) => {
                   <input
                     type="radio"
                     class="delivery-option-input"
-                    name="delivery-option-1"
+                    name="delivery-option-${MatchingList.id}"
                   />
                   <div>
                     <div class="delivery-option-date">Wednesday, June 15</div>
@@ -70,7 +71,7 @@ cartList.forEach((cartItem) => {
                   <input
                     type="radio"
                     class="delivery-option-input"
-                    name="delivery-option-1"
+                    name="delivery-option-${MatchingList.id}"
                   />
                   <div>
                     <div class="delivery-option-date">Monday, June 13</div>

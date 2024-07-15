@@ -19,7 +19,7 @@
 
 import { cartList, carthtml, MatchingList } from "../data/cart.js";
 import { productList } from "../data/products.js";
-
+import { moneyCurrency } from "./utils/money.js";
 let cartsetter = "",
   counter = 1,
   producthtml = "";
@@ -45,7 +45,7 @@ productList.forEach((product) => {
           </div>
 
           <div class="product-price">
-            $${(product.priceCents / 100).toFixed(2)}
+            $${moneyCurrency(product.priceCents)}
           </div>
 
           <div class="product-quantity-container">
