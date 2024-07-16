@@ -23,6 +23,8 @@ import { moneyCurrency } from "./utils/money.js";
 let cartsetter = "",
   counter = 1,
   producthtml = "";
+// export let cartquantity = 0;
+
 updateCartQuantity();
 console.log(cartList);
 productList.forEach((product) => {
