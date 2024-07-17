@@ -1,7 +1,6 @@
 import { cart, removeFromCart, updateDeliveryOption } from "../../data/cart.js";
 import { products, getProduct } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
-import { hello } from "https://unpkg.com/supersimpledev@1.0.1/hello.esm.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import {
   deliveryOptions,
@@ -11,7 +10,7 @@ import { renderPaymentSummary } from "./paymentSummary.js";
 
 export function renderOrderSummary() {
   let cartSummaryHTML = "";
-
+  let itemQuantity = 0;
   cart.forEach((cartItem) => {
     const productId = cartItem.productId;
 
@@ -69,6 +68,12 @@ export function renderOrderSummary() {
         </div>
       </div>
     `;
+    //// update quantity of the ordersummary page and order summary
+    itemQuantity += cartItem.quantity;
+
+    document.querySelector(
+      ".js-item-quantity"
+    ).innerHTML = `${itemQuantity} items`;
   });
 
   function deliveryOptionsHTML(matchingProduct, cartItem) {
@@ -120,7 +125,7 @@ export function renderOrderSummary() {
         `.js-cart-item-container-${productId}`
       );
       container.remove();
-
+      renderOrderSummary();
       renderPaymentSummary();
     });
   });
