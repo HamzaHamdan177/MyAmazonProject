@@ -141,7 +141,9 @@ export function renderOrderSummary() {
             renderOrderSummary();
             renderPaymentSummary();
           } else {
-            alert("Quantity must be greater than 0.");
+            removeFromCart(productId);
+            renderOrderSummary();
+            renderPaymentSummary();
           }
         });
     });
