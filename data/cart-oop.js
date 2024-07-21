@@ -68,9 +68,7 @@ function Cart(localStorageKey) {
 
       this.saveToStorage();
     },
-    loadfrommyass() {
-      console.log("hi");
-    },
+    loadfrommyass() {},
   };
   return cart;
 }
@@ -79,5 +77,3 @@ const cart = Cart("cart-oop");
 const businessCart = Cart("cart-business");
 cart.loadFromStorage();
 businessCart.loadFromStorage();
-console.log(cart);
-console.log(businessCart);
